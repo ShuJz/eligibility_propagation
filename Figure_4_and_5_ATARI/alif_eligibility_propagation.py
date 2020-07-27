@@ -63,17 +63,19 @@ class CustomALIF(Cell):
 
         with tf.variable_scope('InputWeights'):
             # Input weights
+            np.random.seed(5)
             init_w_in_var = w_in_init if w_in_init is not None else \
                 (np.random.randn(n_in, n_rec) / np.sqrt(n_in)).astype(np.float32)
             init_w_in_var *= w_scale
-            self.w_in_var = tf.get_variable("InputWeight", initializer=init_w_in_var, dtype=dtype)
+            self.w_in_var = tf.Variable(init_w_in_var, dtype=dtype)
             self.w_in_val = self.w_in_var
 
         with tf.variable_scope('RecWeights'):
+            np.random.seed(5)
             init_w_rec_var = w_rec_init if w_rec_init is not None else \
                 (np.random.randn(n_rec, n_rec) / np.sqrt(n_rec)).astype(np.float32)
             init_w_rec_var *= w_scale
-            self.w_rec_var = tf.get_variable('RecurrentWeight', initializer=init_w_rec_var, dtype=dtype)
+            self.w_rec_var = tf.Variable(init_w_rec_var, dtype=dtype)
             self.w_rec_val = self.w_rec_var
 
             self.recurrent_disconnect_mask = np.diag(np.ones(n_rec, dtype=bool))

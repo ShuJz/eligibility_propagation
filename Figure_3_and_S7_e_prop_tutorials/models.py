@@ -243,10 +243,12 @@ class EligALIF():
         self.thr = thr
 
         with tf.variable_scope('InputWeights'):
+            np.random.seed(5)
             self.w_in_var = tf.Variable(np.random.randn(n_in, n_rec) / np.sqrt(n_in), dtype=dtype)
             self.w_in_val = tf.identity(self.w_in_var)
 
         with tf.variable_scope('RecWeights'):
+            np.random.seed(5)
             self.w_rec_var = tf.Variable(np.random.randn(n_rec, n_rec) / np.sqrt(n_rec), dtype=dtype)
             self.recurrent_disconnect_mask = np.diag(np.ones(n_rec, dtype=bool))
             self.w_rec_val = tf.where(self.recurrent_disconnect_mask, tf.zeros_like(self.w_rec_var),
