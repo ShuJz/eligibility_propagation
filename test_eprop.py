@@ -210,7 +210,12 @@ np_tensors, np_tensors_auto, np_tensors_CustomALIF, np_tensors_CustomALIF_auto =
 # Compute the relative error:
 np_tensors_CustomALIF['gradients_hardcode'] = None
 np_tensors_CustomALIF_auto['gradients_hardcode'] = None
-name_list = ['inputs', 'target', 'w_in', 'w_rec', 'w_out', 'spikes', 'out', 'gradients_hardcode', 'gradients_autodiff']
+np_tensors_CustomALIF['eligibility_traces'] = None
+np_tensors_CustomALIF_auto['eligibility_traces'] = None
+np_tensors_CustomALIF['learning_signals'] = None
+np_tensors_CustomALIF_auto['learning_signals'] = None
+
+name_list = ['inputs', 'target', 'w_in', 'w_rec', 'w_out', 'spikes', 'out', 'eligibility_traces', 'learning_signals', 'gradients_hardcode', 'gradients_autodiff']
 
 # S1:  Compare gradients from BPTT and eprop-autodiff based EligALIF model
 print('S1: EligALIF model BPTT vs. eprop-autodiff')
